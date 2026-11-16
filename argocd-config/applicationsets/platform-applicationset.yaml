@@ -1,0 +1,74 @@
+
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+
+metadata:
+  name: platform-apps
+  namespace: argocd
+
+spec:
+  goTemplate: true
+
+  generators:
+    - list:
+        elements:
+
+          # Ingress NGINX
+          - name: ingress-nginx
+            namespace: ingress-nginx
+
+            chartRepo: https://kubernetes.github.io/ingress-nginx
+            chart: ingress-nginx
+            chartVersion: "4.15.1"
+
+            valuesFile: ingress-nginx/values.yaml
+
+          # Envoy Gateway
+          - name: envoy-gateway
+            namespace: envoy-gateway-system
+
+            chartRepo: docker.io/envoyproxy
+            chart: gateway-helm
+            chartVersion: "v1.10.0"
+
+            valuesFile: envoy-gateway/values.yaml
+
+  template:
+
+    metadata:
+      name: '{{.name}}'
+      namespace: argocd
+
+    spec:
+      project: platform
+
+      sources:
+
+        # Source 1: Official Helm Chart
+        - repoURL: '{{.chartRepo}}'
+          chart: '{{.chart}}'
+          targetRevision: '{{.chartVersion}}'
+
+          helm:
+            releaseName: '{{.name}}'
+
+            valueFiles:
+              - '$values/{{.valuesFile}}'
+
+        # Source 2: Git Repo - Platform Values
+        - repoURL: https://github.com/ChiehChang0319/argocd-repo-test.git
+          targetRevision: main
+          ref: values
+
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{.namespace}}'
+
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true
