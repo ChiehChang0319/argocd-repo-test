@@ -19,6 +19,9 @@ spec:
     # Envoy Gateway OCI Registry
     - docker.io/envoyproxy
 
+    # Metrics Server Helm Repository
+    - https://kubernetes-sigs.github.io/metrics-server
+   
   destinations:
     - namespace: ingress-nginx
       server: https://kubernetes.default.svc
