@@ -1,8 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: fastapi-nginx
-  namespace: python-fastapi
+  name: python-fastapi
+  namespace: apps
 spec:
   ingressClassName: nginx
 
