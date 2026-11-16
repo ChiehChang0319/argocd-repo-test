@@ -21,7 +21,7 @@ spec:
             chart: ingress-nginx
             chartVersion: "4.15.1"
 
-            valuesFile: ingress-nginx/values.yaml
+            valuesFile: platform/ingress-nginx/values.yaml
 
           # Envoy Gateway
           - name: envoy-gateway
@@ -31,7 +31,7 @@ spec:
             chart: gateway-helm
             chartVersion: "v1.10.0"
 
-            valuesFile: envoy-gateway/values.yaml
+            valuesFile: platform/envoy-gateway/values.yaml
 
   template:
 
