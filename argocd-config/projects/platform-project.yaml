@@ -28,23 +28,39 @@ spec:
 
   # Cluster-scoped resources required by Helm charts
   clusterResourceWhitelist:
+    
+    # Kubernetes Namespace
+    - group: ""
+      kind: Namespace
+    
+    # Custom Resource Definitions
     - group: apiextensions.k8s.io
       kind: CustomResourceDefinition
 
+    # Cluster RBAC
     - group: rbac.authorization.k8s.io
       kind: ClusterRole
 
     - group: rbac.authorization.k8s.io
       kind: ClusterRoleBinding
 
+    # Ingress
     - group: networking.k8s.io
       kind: IngressClass
 
+     # Admission Webhooks
     - group: admissionregistration.k8s.io
       kind: ValidatingWebhookConfiguration
 
     - group: admissionregistration.k8s.io
       kind: MutatingWebhookConfiguration
+
+    # Admission Policies
+    - group: admissionregistration.k8s.io
+      kind: ValidatingAdmissionPolicy
+
+    - group: admissionregistration.k8s.io
+      kind: ValidatingAdmissionPolicyBinding
 
   namespaceResourceWhitelist:
     - group: "*"
