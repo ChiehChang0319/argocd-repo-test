@@ -23,7 +23,15 @@ spec:
 
             valuesFile: platform/ingress-nginx/values.yaml
 
+          # Envoy Gateway
+          - name: envoy-gateway
+            namespace: envoy-gateway-system
 
+            chartRepo: docker.io/envoyproxy
+            chart: gateway-helm
+            chartVersion: "v1.6.7"
+
+            valuesFile: platform/envoy-gateway/values.yaml
 
   template:
 
