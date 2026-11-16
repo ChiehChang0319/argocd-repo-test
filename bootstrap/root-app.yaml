@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/ChiehChang0319/argocd-repo-test.git
     targetRevision: main
-    path: bootstrap
+    path: applicationsets
     directory:
       recurse: true
 
