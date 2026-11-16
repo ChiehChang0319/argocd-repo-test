@@ -29,7 +29,7 @@ spec:
 
             chartRepo: docker.io/envoyproxy
             chart: gateway-helm
-            chartVersion: "v1.10.0"
+            chartVersion: "v1.6.7"
 
             valuesFile: platform/envoy-gateway/values.yaml
 
