@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: python-fastapi
-          image: ghcr.io/chiehchang0319/githubworkflow/python-fastapi:sha-66fa700
+          image: ghcr.io/jerrychang-workspace/githubworkflow/python-fastapi:sha-66fa700
           imagePullPolicy: IfNotPresent
 
           readinessProbe:
