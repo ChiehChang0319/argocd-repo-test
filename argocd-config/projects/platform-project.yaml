@@ -50,6 +50,10 @@ spec:
     - group: rbac.authorization.k8s.io
       kind: ClusterRoleBinding
 
+    # Cluster API Service
+    - group: apiregistration.k8s.io
+      kind: APIService
+
     # Ingress
     - group: networking.k8s.io
       kind: IngressClass
