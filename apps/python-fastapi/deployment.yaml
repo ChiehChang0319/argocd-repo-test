@@ -4,7 +4,7 @@ metadata:
   name: python-fastapi
   namespace: apps
 spec:
-  replicas: 6
+  replicas: 4
   
   strategy:
     type: RollingUpdate
